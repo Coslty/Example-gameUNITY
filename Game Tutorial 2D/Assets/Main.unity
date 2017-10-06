@@ -345,6 +345,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  groundCheck: {fileID: 1417471284}
+  jumpHeight: 250
 --- !u!1 &1227377081
 GameObject:
   m_ObjectHideFlags: 0
