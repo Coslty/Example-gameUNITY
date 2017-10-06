@@ -18,6 +18,12 @@ public class playerController : MonoBehaviour {
     public float jumpHeight;
 
 
+    //for Shooting
+    public Transform gunTip;
+    public GameObject bullet;
+    float fireRate = 0.5f;
+    float nextFire = 0f;
+
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +41,11 @@ public class playerController : MonoBehaviour {
             grounded = false;
             myAnim.SetBool("isGrounded", grounded);
             myRB.AddForce(new Vector2(0, jumpHeight));
+        }
+        //player shooting
+        if (Input.GetAxisRaw("Fire1") > 0)
+        {
+            fireRocket();
         }
     }
 
@@ -77,7 +88,20 @@ public class playerController : MonoBehaviour {
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
+    void fireRocket()
+    {
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            if (facingRight)
+            {
+                Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+            } else if (!facingRight)
+            {
+                Instantiate(bullet, gunTip.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
+            }
+        }
+    }
 
 
 }
