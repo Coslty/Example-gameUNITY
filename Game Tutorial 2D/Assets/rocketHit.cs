@@ -26,6 +26,13 @@ public class rocketHit : MonoBehaviour {
             myPC.removeForce();
             Instantiate(explosionEffect, transform.position, transform.rotation);
             Destroy(gameObject);
+
+            if (other.tag == "Enemy")
+            {
+                enemyHealth hurtEnemy = other.gameObject.GetComponent<enemyHealth>();
+                hurtEnemy.addDamage(weaponDamage);
+            }
+
         }
     }
 
@@ -36,6 +43,14 @@ public class rocketHit : MonoBehaviour {
             myPC.removeForce();
             Instantiate(explosionEffect, transform.position, transform.rotation);
             Destroy(gameObject);
+
+
+
+            if (other.tag == "Enemy")
+            {
+                enemyHealth hurtEnemy = other.gameObject.GetComponent<enemyHealth>();
+                hurtEnemy.addDamage(weaponDamage);
+            }
         }
     }
 
